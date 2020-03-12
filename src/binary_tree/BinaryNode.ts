@@ -9,19 +9,19 @@ export class BinaryNode<T> {
     this.right = null
   }
 
-  isLeaf() {
+  isLeaf(): boolean {
     return (this.left == null && this.right == null)
   }
 
-  hasOnlyLeftChild() {
+  hasOnlyLeftChild(): boolean {
     return (this.left !== null && this.right == null)
   }
 
-  hasOnlyRightChild() {
+  hasOnlyRightChild(): boolean {
     return (this.right !== null && this.left == null)
   }
 
-  hasChildren() {
+  hasChildren(): boolean {
     return (this.left !== null && this.right !== null)
   }
 }
