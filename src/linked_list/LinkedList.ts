@@ -1,13 +1,13 @@
 import { LinkedListItem } from "./LinkedNode"
 
 export class LinkedList<T> {
-  protected size: number
-  protected head: LinkedListItem<T>
-  protected tail: LinkedListItem<T>
+  private size: number
+  private head: LinkedListItem<T>
+  private tail: LinkedListItem<T>
 
   constructor() {
     this.size = 0
-    this.head = this.head = undefined
+    this.head = undefined
   }
 
   push(val: T): void {
@@ -83,7 +83,7 @@ export class LinkedList<T> {
 		this.size--
   }
 
-  headAndTailResetToNull(): void {
+  private headAndTailResetToNull(): void {
     this.head = this.tail = undefined
 	}
 }

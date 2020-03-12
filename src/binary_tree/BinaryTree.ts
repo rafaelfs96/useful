@@ -7,7 +7,7 @@ export class BinaryTree<T> {
     this.root = null
   }
 
-  insert(node: BinaryNode<T>, val: T): BinaryNode<T> {
+  private insert(node: BinaryNode<T>, val: T): BinaryNode<T> {
     if(!node) this.root = new BinaryNode(val)
     else {
       if(val <= node.val) {
@@ -20,7 +20,7 @@ export class BinaryTree<T> {
     }
   }
 
-  findNode(node: BinaryNode<T>, val: T) {
+  private findNode(node: BinaryNode<T>, val: T) {
     if(!node) return node
     else {
       if(val < node.val) return this.findNode(node.left, val)
@@ -29,7 +29,7 @@ export class BinaryTree<T> {
     }
   }
 
-  deleteNode(parent: BinaryNode<T>, node: BinaryNode<T>, val: T): BinaryNode<T> {
+  private deleteNode(parent: BinaryNode<T>, node: BinaryNode<T>, val: T): BinaryNode<T> {
     if(node == null) return
 
     if(val < node.val) return this.deleteNode(node, node.left, val)
@@ -58,7 +58,7 @@ export class BinaryTree<T> {
     }
   }
 
-  goLeft(node: BinaryNode<T>): BinaryNode<T> {
+  private goLeft(node: BinaryNode<T>): BinaryNode<T> {
     if(!node.left) return node
     else return this.goLeft(node.left)
   }
