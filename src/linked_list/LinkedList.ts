@@ -10,8 +10,27 @@ export class LinkedList<T> {
     this.head = this.tail = undefined
   }
 
+  insert(val: T, previousItem: LinkedListItem<T>): void {
+    const node: LinkedListItem<T> = new LinkedListItem(val)
+  }
+
+  // add item at the beginning of the list
+  unshift(val: T): void {
+    const node: LinkedListItem<T> = new LinkedListItem(val)
+    
+    if(this.size === 0) this.head = this.tail = node
+    else {
+      this.head.prev = node
+      node.next = this.head
+      this.head = node
+    }
+
+    this.size++
+  }
+
+  // add item at the end of the list
   push(val: T): void {
-    const node = new LinkedListItem(val)
+    const node: LinkedListItem<T> = new LinkedListItem(val)
 
     if(this.size === 0) this.head = this.tail = node
     else {
@@ -23,6 +42,7 @@ export class LinkedList<T> {
     this.size++
   }
 
+  // returns the last item of the list
   pop(): T {
     this.size--
     const ret: LinkedListItem<T> = this.head
@@ -35,6 +55,7 @@ export class LinkedList<T> {
     return ret.val
   }
 
+  // returns the first item of the list
   shift(): T {
     this.size--
     const ret: LinkedListItem<T> = this.head
@@ -47,25 +68,12 @@ export class LinkedList<T> {
     return ret.val
   }
 
-  unshift(val: T): void {
-    const node = new LinkedListItem(val)
-
-    if(this.size === 0) this.head = this.tail = node
-    else {
-      this.head.prev = node
-      node.next = this.head
-      this.head = node
-    }
-
-    this.size++
-  }
-
   count(): number {
     return this.size
   }
 
   delete(val: T): void {
-    let tempNode = this.head
+    let tempNode: LinkedListItem<T> = this.head
 
     while(tempNode.val !== val) {
       tempNode = tempNode.next
@@ -81,6 +89,19 @@ export class LinkedList<T> {
     }
     
 		this.size--
+  }
+
+  show(): Array<T> {
+    let arr: Array<T> = []
+    let currentItem = this.head
+
+    while(true) {
+      arr.push(currentItem.val)
+
+      if(currentItem.next) currentItem = currentItem.next
+      else break
+    }
+    return arr
   }
 
   private resetHeadAndTail(): void {
