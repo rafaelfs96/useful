@@ -7,7 +7,7 @@ export class LinkedList<T> {
 
   constructor() {
     this.size = 0
-    this.head = undefined
+    this.head = this.tail = undefined
   }
 
   push(val: T): void {
@@ -30,7 +30,7 @@ export class LinkedList<T> {
     if(this.size > 0) {
       this.tail = this.tail.prev
       this.tail.next = undefined
-    } else this.headAndTailResetToNull()
+    } else this.resetHeadAndTail()
 
     return ret.val
   }
@@ -42,7 +42,7 @@ export class LinkedList<T> {
     if(this.size > 0) {
       this.head = this.head.next
       this.head.prev = undefined
-    } else this.headAndTailResetToNull()
+    } else this.resetHeadAndTail()
 
     return ret.val
   }
@@ -72,7 +72,7 @@ export class LinkedList<T> {
       if(tempNode === undefined) return
     }
 
-    if (this.size === 1) this.headAndTailResetToNull()
+    if (this.size === 1) this.resetHeadAndTail()
 		else if (tempNode === this.head) this.shift()
 		else if (tempNode === this.tail) this.pop()
 		else {
@@ -83,7 +83,7 @@ export class LinkedList<T> {
 		this.size--
   }
 
-  private headAndTailResetToNull(): void {
+  private resetHeadAndTail(): void {
     this.head = this.tail = undefined
 	}
 }
