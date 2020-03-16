@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/rafaelfs96/useful#readme",
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "pre-push": "^0.1.1"
   }
 }
