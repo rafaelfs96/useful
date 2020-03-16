@@ -6,6 +6,7 @@
   "scripts": {
     "watch": "tsc -w",
     "build": "tsc",
+    "clean": "rm -rf dist",
     "test": "jest --passWithNoTests --no-cache"
   },
   "repository": {
