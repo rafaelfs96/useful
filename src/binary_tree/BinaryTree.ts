@@ -7,7 +7,7 @@ export class BinaryTree<T> {
     this.root = null
   }
 
-  private insert(node: BinaryNode<T>, val: T): BinaryNode<T> {
+  private insert(node: BinaryNode<T>, val: T): void {
     if(!node) this.root = new BinaryNode(val)
     else {
       if(val <= node.val) {
@@ -20,7 +20,7 @@ export class BinaryTree<T> {
     }
   }
 
-  private findNode(node: BinaryNode<T>, val: T) {
+  private findNode(node: BinaryNode<T>, val: T): BinaryNode<T> {
     if(!node) return node
     else {
       if(val < node.val) return this.findNode(node.left, val)
@@ -29,7 +29,7 @@ export class BinaryTree<T> {
     }
   }
 
-  private deleteNode(parent: BinaryNode<T>, node: BinaryNode<T>, val: T): BinaryNode<T> {
+  private deleteNode(parent: BinaryNode<T>, node: BinaryNode<T>, val: T): void {
     if(node == null) return
 
     if(val < node.val) return this.deleteNode(node, node.left, val)
@@ -48,7 +48,7 @@ export class BinaryTree<T> {
         else if (val < parent.val) parent.left = node.right
         else parent.right = node.right
       } else if(node.hasChildren()) {
-        let leftMost: BinaryNode<T>= this.goLeft(node.right)
+        let leftMost: BinaryNode<T> = this.goLeft(node.right)
         leftMost.left = node.left
         if(val < parent.val) parent.left = node.right
         else parent.right = node.right
@@ -65,7 +65,7 @@ export class BinaryTree<T> {
 
   exists(val: T): boolean {
     let dummy = this.root
-    let result: boolean = this.findNode(dummy, val)
+    let result: boolean = Boolean(this.findNode(dummy, val))
     return result
   }
 
