@@ -10,8 +10,33 @@ export class LinkedList<T> {
     this.head = this.tail = undefined
   }
 
-  insert(val: T, previousItem: LinkedListItem<T>): void {
-    const node: LinkedListItem<T> = new LinkedListItem(val)
+  // insert an item in specific position
+  insert(val: T, previousItem: T): void {
+    const newItem: LinkedListItem<T> = new LinkedListItem<T>(val)
+    let currentItem: LinkedListItem<T> = this.head
+
+    if(this.size === 0) {
+      this.head = this.tail = newItem
+      this.size++
+    }
+    else {
+      let previous: LinkedListItem<T> = new LinkedListItem<T>(previousItem)
+      while(true) {
+        if(currentItem.val === previous.val) {
+          let tempNextItem: LinkedListItem<T> = currentItem.next
+
+          currentItem.next = newItem
+          newItem.prev = currentItem
+          newItem.next = tempNextItem
+
+          tempNextItem.prev = newItem
+          tempNextItem.next = undefined
+          this.size++
+          break
+        } else if(currentItem.next) currentItem = currentItem.next
+        else throw new Error('Can\'t find ' + previousItem)
+      }
+    }
   }
 
   // add item at the beginning of the list
@@ -66,6 +91,23 @@ export class LinkedList<T> {
     } else this.resetHeadAndTail()
 
     return ret.val
+  }
+
+  find(val: T): LinkedListItem<T> {
+    const node = new LinkedListItem<T>(val)
+    let item = this.head
+
+    let result: LinkedListItem<T> = null
+
+    while(true) {
+      if(node.val === item.val) {
+        result = item
+        break
+      } else if (item.next) item = item.next
+      else throw new Error('Can\'t find ' + val)
+    }
+
+    return result
   }
 
   count(): number {
