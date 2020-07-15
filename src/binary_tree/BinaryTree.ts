@@ -1,4 +1,4 @@
-import { BinaryNode } from "./BinaryNode";
+import { BinaryNode } from './BinaryNode'
 
 export class BinaryTree<T> {
   private root: BinaryNode<T> = null
@@ -63,23 +63,23 @@ export class BinaryTree<T> {
     else return this.goLeft(node.left)
   }
 
-  exists(val: T): boolean {
+  public exists(val: T): boolean {
     let dummy = this.root
     let result: boolean = Boolean(this.findNode(dummy, val))
     return result
   }
 
-  remove(val: T): void {
+  public remove(val: T): void {
       let dummy = this.root
       this.deleteNode(dummy, dummy, val)
   }
 
-  add(val: T): void {
+  public add(val: T): void {
       let dummy = this.root
       this.insert(dummy, val)
   }
 
-  show(): void {
+  public publicshow(): void {
     console.log(this.root)
   }
 }

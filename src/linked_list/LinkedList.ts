@@ -1,4 +1,4 @@
-import { LinkedListItem } from "./LinkedNode"
+import { LinkedListItem } from './LinkedNode'
 
 export class LinkedList<T> {
   private size: number
