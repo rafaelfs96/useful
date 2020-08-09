@@ -64,8 +64,8 @@ export class BinaryTree<T> {
   }
 
   public exists(val: T): boolean {
-    let dummy = this.root
-    let result: boolean = Boolean(this.findNode(dummy, val))
+    let root = this.root
+    let result: boolean = Boolean(this.findNode(root, val))
     return result
   }
 
