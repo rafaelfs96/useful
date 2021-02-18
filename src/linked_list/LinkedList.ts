@@ -15,14 +15,13 @@ export class LinkedList<T> {
     const newItem: LinkedListItem<T> = new LinkedListItem<T>(val)
     let currentItem: LinkedListItem<T> = this.head
 
-    if(this.size === 0) {
+    if (this.size === 0) {
       this.head = this.tail = newItem
       this.size++
-    }
-    else {
+    } else {
       let previous: LinkedListItem<T> = new LinkedListItem<T>(previousItem)
-      while(true) {
-        if(currentItem.val === previous.val) {
+      while (true) {
+        if (currentItem.val === previous.val) {
           let tempNextItem: LinkedListItem<T> = currentItem.next
 
           currentItem.next = newItem
@@ -33,8 +32,8 @@ export class LinkedList<T> {
           tempNextItem.next = undefined
           this.size++
           break
-        } else if(currentItem.next) currentItem = currentItem.next
-        else throw new Error('Can\'t find ' + previousItem)
+        } else if (currentItem.next) currentItem = currentItem.next
+        else throw new Error("Can't find " + previousItem)
       }
     }
   }
@@ -42,8 +41,8 @@ export class LinkedList<T> {
   // add item at the beginning of the list
   unshift(val: T): void {
     const node: LinkedListItem<T> = new LinkedListItem(val)
-    
-    if(this.size === 0) this.head = this.tail = node
+
+    if (this.size === 0) this.head = this.tail = node
     else {
       this.head.prev = node
       node.next = this.head
@@ -57,7 +56,7 @@ export class LinkedList<T> {
   push(val: T): void {
     const node: LinkedListItem<T> = new LinkedListItem(val)
 
-    if(this.size === 0) this.head = this.tail = node
+    if (this.size === 0) this.head = this.tail = node
     else {
       this.tail.next = node
       node.prev = this.tail
@@ -72,7 +71,7 @@ export class LinkedList<T> {
     this.size--
     const ret: LinkedListItem<T> = this.head
 
-    if(this.size > 0) {
+    if (this.size > 0) {
       this.tail = this.tail.prev
       this.tail.next = undefined
     } else this.resetHeadAndTail()
@@ -85,7 +84,7 @@ export class LinkedList<T> {
     this.size--
     const ret: LinkedListItem<T> = this.head
 
-    if(this.size > 0) {
+    if (this.size > 0) {
       this.head = this.head.next
       this.head.prev = undefined
     } else this.resetHeadAndTail()
@@ -99,12 +98,12 @@ export class LinkedList<T> {
 
     let result: LinkedListItem<T> = null
 
-    while(true) {
-      if(node.val === item.val) {
+    while (true) {
+      if (node.val === item.val) {
         result = item
         break
       } else if (item.next) item = item.next
-      else throw new Error('Can\'t find ' + val)
+      else throw new Error("Can't find " + val)
     }
 
     return result
@@ -117,30 +116,30 @@ export class LinkedList<T> {
   delete(val: T): void {
     let tempNode: LinkedListItem<T> = this.head
 
-    while(tempNode.val !== val) {
+    while (tempNode.val !== val) {
       tempNode = tempNode.next
-      if(tempNode === undefined) return
+      if (tempNode === undefined) return
     }
 
     if (this.size === 1) this.resetHeadAndTail()
-		else if (tempNode === this.head) this.shift()
-		else if (tempNode === this.tail) this.pop()
-		else {
-			tempNode.prev.next = tempNode.next
-			tempNode.next.prev = tempNode.prev
+    else if (tempNode === this.head) this.shift()
+    else if (tempNode === this.tail) this.pop()
+    else {
+      tempNode.prev.next = tempNode.next
+      tempNode.next.prev = tempNode.prev
     }
-    
-		this.size--
+
+    this.size--
   }
 
   show(): Array<T> {
     let arr: Array<T> = []
     let currentItem = this.head
 
-    while(true) {
+    while (true) {
       arr.push(currentItem.val)
 
-      if(currentItem.next) currentItem = currentItem.next
+      if (currentItem.next) currentItem = currentItem.next
       else break
     }
     return arr
@@ -148,5 +147,5 @@ export class LinkedList<T> {
 
   private resetHeadAndTail(): void {
     this.head = this.tail = undefined
-	}
+  }
 }

@@ -10,18 +10,18 @@ export class BinaryNode<T> {
   }
 
   isLeaf(): boolean {
-    return (this.left == null && this.right == null)
+    return this.left == null && this.right == null
   }
 
   hasOnlyLeftChild(): boolean {
-    return (this.left !== null && this.right == null)
+    return this.left !== null && this.right == null
   }
 
   hasOnlyRightChild(): boolean {
-    return (this.right !== null && this.left == null)
+    return this.right !== null && this.left == null
   }
 
   hasChildren(): boolean {
-    return (this.left !== null && this.right !== null)
+    return this.left !== null && this.right !== null
   }
 }
